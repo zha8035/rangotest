@@ -1,0 +1,78 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+{% block title_block %}
+Rango
+{% endblock %}
+{% block body_block %}
+<div class="jumbotron p-6">
+    <div class="container">
+
+   
+<h1 class="jumbotron-heading">Rango says...</h1>
+<p>
+    <!-- Visits{{visits}}-->
+</p>
+            <div>
+                
+                {% if user.is_authenticated %}
+                howdy{{user.username}}
+                {% else %}
+                    hey there partner! <br />
+                {% endif %}
+                <strong>{{boldmessage}}</strong><br />
+            </div>
+            <div class="container">
+                <div class="row">
+                <div class="col-md-6">
+                <div class="card mb-6">
+                <div class="card-body">
+                <h2>Most liked Categories</h2>
+                <p class="card-text"></p>
+                {% if categories %}
+                <ul class="list-group">
+                    {% for category in categories %}
+                    <li class="list-group-item">
+                        <a href="{% url 'rango:show_category' category.slug%}">{{category.name}}</a>
+                        
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <strong>
+                    There are no categories present.
+                </strong>
+                {% endif %}
+            </p>
+            </div>
+            </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mb-6">
+                <div class="card-body">
+                <h2>Most Viewed Pages</h2>
+                
+                {% if pages %}
+                <ul class="list-group">
+                    {% for page in pages %}
+                    <li class="list-group-item">
+                        <a href={{page.url}}>{{page.title}}  {{page.views}} </a>
+                    </li>
+                    {% endfor %}
+                    {% else %}
+                    <strong>
+                        No pages found!
+                    </strong>
+                    {% endif %}
+                </p>
+                </ul>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+            <img src="{% static 'images/rango.jpg' %}"   alt="Picture of rango">
+           <img src="{{MEDIA_URL}}cat.jpg" alt="Picture of cat">
+{% endblock %}

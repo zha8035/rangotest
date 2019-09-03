@@ -1,0 +1,1 @@
+https://rango.cognitiveservices.azure.com/bing/v7.0
